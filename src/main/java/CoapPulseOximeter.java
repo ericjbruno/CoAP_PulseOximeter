@@ -55,18 +55,6 @@ public class CoapPulseOximeter extends CoapServer {
         System.out.println("--Registered resources: " + resp.getResponseText());
         
         CoapClient rd = new CoapClient("coap://10.0.1.111/rd?ep=pulseoximeter/heartrate/");
-//        CoapClient rd = new CoapClient("coap://10.0.1.111/.well-known/core.rd/rd?ep=pulseoxi"); 
-//        resp = rd.get();
-//        System.out.println("--Response text: " + resp.getResponseText());
-        
-//        System.out.println("Registering resource: pulseoximeter ");
-//        resp = 
-//            //rd.post("</pulseoximeter/heartrate>;title=\"Heartrate Resource\"", 
-//            rd.post("</pulseoximeter>;ct=41;rt=\"Pulse Oximeter Resource\";if=\"sensor\"", 
-//                    MediaTypeRegistry.APPLICATION_LINK_FORMAT);
-//        System.out.println("--Response: " + 
-//                            resp.getCode() + ", " + 
-//                            resp.getOptions().getLocationString());
         
         System.out.println("Registering resource: heartrate ");
         resp = rd.post("</pulseoximeter/heartrate>;"
@@ -94,29 +82,7 @@ public class CoapPulseOximeter extends CoapServer {
         catch ( Exception e ) {
             e.printStackTrace();
         }
-    }
-    
-//    public Set<WebLink> discover(String query) {
-//	Request discover = Request.newGet();
-//	discover.setURI("coap://10.0.1.111"); // for scheme and authority, but then remove path and query
-//	discover.getOptions().clearUriPath().clearUriQuery().setUriPath("/.well-known/core");
-//	if (query!=null) {
-//		discover.getOptions().setUriQuery(query);
-//	}
-//	CoapResponse links = synchronous(discover);
-//	
-//	// if no response, return null (e.g., timeout)
-//	if (links == null) {
-//		return null;
-//	}
-//
-//	// check if Link Format
-//	if (links.getOptions().getContentFormat()!=MediaTypeRegistry.APPLICATION_LINK_FORMAT)
-//		return Collections.emptySet();
-//	
-//	// parse and return
-//	return LinkFormat.parse(links.getResponseText());
-//    }    
+    }   
 
     /////////////////////////////////////////////////////////////////////////
     // CoAP resource for patient's heartrate
